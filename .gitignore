@@ -1,0 +1,12 @@
+.env 
+config/db_connect.php
+config.local.php 
+*.log 
+logs/
+/vendor/ 
+/node_modules/ 
+/cache/ 
+/uploads/ 
+.vscode/
+.DS_Store
+Thumbs.db
