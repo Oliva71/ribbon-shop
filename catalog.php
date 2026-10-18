@@ -125,6 +125,11 @@ $breadcrumbs = getBreadcrumbs('catalog', [
             display: flex;
             flex-direction: column;
         }
+
+        .product-body a:hover {
+            text-decoration: underline;
+        }
+
         .price {
             font-weight: 700;
             color: #2c3e50;
@@ -229,17 +234,20 @@ $breadcrumbs = getBreadcrumbs('catalog', [
 
  <section class="section-box_top">
 
- <?php include __DIR__ . '/breadcrumbs-render.php'; ?>
+ 
 
 <div class="container">
-    <h1 class="mb-4 fw-bold">Каталог товаров</h1>
+    <h2 class="section__title">Каталог</h2>
+
+    <?php include __DIR__ . '/breadcrumbs-render.php'; ?>
 
     <!-- Фильтры в одной строке -->
-    <form method="GET" class="row g-3 mb-4 align-items-end">
+     <label for="filter">Фильтрация товаров:</label>
+    <form method="GET" name="filter" class="row g-3 mb-4 align-items-end">
         <input type="hidden" name="page" value="1">
- 
+
         <div class="col-md-4 col-lg-3">
-            <label for="category_id" class="form-label fw-semibold">Категория</label>
+            <!-- <label for="category_id" class="form-label fw-semibold">Категория</label> -->
             <select name="category_id" id="category_id" class="form-select">
                 <option value="">Все категории</option>
                 <?php foreach ($cats as $c): ?>
@@ -250,9 +258,9 @@ $breadcrumbs = getBreadcrumbs('catalog', [
                 <?php endforeach; ?>
             </select>
         </div>
-
+      
         <div class="col-md-4 col-lg-3">
-            <label for="material_id" class="form-label fw-semibold">Материал</label>
+            <!-- <label for="material_id" class="form-label fw-semibold">Материал</label> -->
             <select name="material_id" id="material_id" class="form-select">
                 <option value="">Все материалы</option>
                 <?php foreach ($mats as $m): ?>
@@ -265,7 +273,7 @@ $breadcrumbs = getBreadcrumbs('catalog', [
         </div>  
         
         <div class="col-md-4 col-lg-3">
-    <label for="design_id" class="form-label fw-semibold">Дизайн</label>
+    <!-- <label for="design_id" class="form-label fw-semibold">Дизайн</label> -->
     <select name="design_id" id="design_id" class="form-select">
         <option value="">Все варианты</option>
         <?php foreach ($allDesigns as $d): ?>
@@ -280,9 +288,11 @@ $breadcrumbs = getBreadcrumbs('catalog', [
     </select>
 </div>
 
-
         <div class="col-auto">
             <button type="submit" class="btn btn__gradieht login-btn__gradieht-register">Применить</button>
+        </div>
+        <div class="col-auto">
+            <a href="catalog.php" class="btn btn__gradieht login-btn__gradieht-register">Очистить</a>
         </div>
         <div class="col-auto d-none d-md-block">
             <!-- Пустой блок, чтобы кнопка была прижата к фильтру -->
@@ -311,16 +321,20 @@ $breadcrumbs = getBreadcrumbs('catalog', [
     <div class="col-6 col-sm-4 col-md-3 col-lg-3">
         <div class="product-card">
             <div class="product-img-wrapper">
+               <a href="<?= htmlspecialchars($productLink) ?>">
                 <img src="<?= htmlspecialchars($thumbPath) ?>"
                      alt="<?= htmlspecialchars($product['name']) ?>"
                      class="product-img"
                      style="object-fit: cover;">
+                     </a>
             </div>
             <div class="product-body d-flex flex-column">
+               <a href="<?= htmlspecialchars($productLink) ?>">
                 <h3 class="card-title h6 fw-semibold mb-2 text-truncate" 
                     title="<?= htmlspecialchars($product['name']) ?>">
                     <?= htmlspecialchars($product['name']) ?>
                 </h3>
+               </a>
                 
                 <!-- Блок с ценой и кнопками -->
                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
@@ -352,11 +366,11 @@ $breadcrumbs = getBreadcrumbs('catalog', [
                         </button>
                         
                         <!-- Кнопка "Подробнее" -->
-                        <a href="<?= htmlspecialchars($productLink) ?>" 
+                        <!-- <a href="<?= htmlspecialchars($productLink) ?>" 
                            class="btn btn-sm btn-primary btn-gradient-action" 
                            title="Перейти к товару">
                             <i class="bi bi-arrow-right"></i>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
